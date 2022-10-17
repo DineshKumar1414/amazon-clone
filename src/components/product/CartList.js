@@ -45,7 +45,7 @@ function CartList(props) {
             <br />
             <div style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
            <div><Typography variant="p" fontWeight="400"><span>&#8377;</span>&nbsp;{userObj.price}</Typography></div> 
-        <Link to={`/products/${userObj.id}`}>  <Button  style={{backgroundColor:"#4F7942",color:"#ffffff"}}  variant="contained">Add to cart</Button> </Link> </div>
+        <Link style={{textDecoration:'none'}} to={`/products/${userObj.id}`}>  <Button  style={{backgroundColor:"#4F7942",color:"#ffffff"}}  variant="contained">Add to cart</Button> </Link> </div>
     
           
        
