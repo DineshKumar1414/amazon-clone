@@ -9,15 +9,18 @@ import SignIn from "./register-login/login.js";
 import Register from "./register-login/register.js";
 
 
+
 function AppRoute(props) {
 
 
   useEffect(() => {
-
+    window.scrollTo(0, 0)
   });
+ 
   return (
     <React.Fragment>
-   
+     
+      
         <Routes>
         <Route
           path="/" index

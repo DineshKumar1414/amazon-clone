@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { React, useEffect, useState,useCallback } from "react";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,20 +12,54 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-
+import productsApi from '../../components/api/products';
+import { useLocation, useNavigate  } from "react-router-dom";
 
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  const location = useLocation();
+  const history = useNavigate();
+  const [error, setError] = useState(null);
+  const handleSubmit = async(event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
+      username: data.get('email'),
       password: data.get('password'),
     });
+    var payload={
+
+      username: data.get('email'),
+      password: data.get('password'),
+      
+    }
+    try {
+      history.push({
+        pathname: "/products",
+        // search:
+        //   "customer_key=" +
+        //   params.customer_key 
+         
+      });
+      history("/products", { replace: true });
+      console.log(payload)
+      const json = await productsApi.login(payload);
+      console.log(json)
+    } catch (_error) {
+      setError(_error);
+      console.log(_error)
+      history("/products", { replace: true });
+      // history.push(
+      //   "/products",
+      //   // search:
+      //   //   "customer_key=" +
+      //   //   params.customer_key 
+         
+      // );
+    }
   };
+  
 
   return (
     <ThemeProvider theme={theme}>
